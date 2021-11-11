@@ -3,14 +3,16 @@ using Gestion_Prod_Catalogue.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gestion_Prod_Catalogue.Migrations
 {
     [DbContext(typeof(CatalogueDbContext))]
-    partial class CatalogueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211111162420_configurationTablesBD")]
+    partial class configurationTablesBD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

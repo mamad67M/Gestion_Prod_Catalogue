@@ -9,7 +9,7 @@ namespace Gestion_Prod_Catalogue.Models
 {
    [Table("CATEGORIE")]
     public class Categorie
-    {
+    {   [Key]
         public int CatalogueID { get; set; }
         [StringLength(30)]
         public string  NomCatalogue { get; set; }

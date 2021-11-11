@@ -20,6 +20,6 @@ namespace Gestion_Prod_Catalogue.Models
         public int Quantite { get; set; }
         public int CategorieID { get; set; }
         // propriete de navigation (Lezy Loading)
-        public Categorie Categorie { get; set; }
+        public virtual Categorie Categorie { get; set; }
     }
 }
