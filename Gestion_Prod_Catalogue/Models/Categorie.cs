@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Gestion_Prod_Catalogue.Models
 {
-    public class Catalogue
+   [Table("CATEGORIE")]
+    public class Categorie
     {
         public int CatalogueID { get; set; }
         [StringLength(30)]

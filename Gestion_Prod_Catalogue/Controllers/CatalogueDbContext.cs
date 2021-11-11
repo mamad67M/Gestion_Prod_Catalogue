@@ -14,7 +14,7 @@ namespace Gestion_Prod_Catalogue.Controllers
 
         }
         public DbSet<Produit> Produits { get; set; }
-        public DbSet<Catalogue> Catalogues { get; set; }
+        public DbSet<Categorie> Catalogues { get; set; }
 
     }
 }

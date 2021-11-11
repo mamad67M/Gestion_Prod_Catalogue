@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Gestion_Prod_Catalogue.Models
 {
+    [Table("PRODUIT")]
     public class Produit
     {
         [Key]
@@ -18,6 +20,6 @@ namespace Gestion_Prod_Catalogue.Models
         public int Quantite { get; set; }
         public int CategorieID { get; set; }
         // propriete de navigation (Lezy Loading)
-        public Catalogue Catalogue { get; set; }
+        public Categorie Categorie { get; set; }
     }
 }
