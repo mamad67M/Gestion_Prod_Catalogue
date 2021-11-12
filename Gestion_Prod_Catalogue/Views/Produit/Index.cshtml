@@ -5,59 +5,59 @@
 
 
 
-<div class="container pt-2" >
-
+<div class="container pt-2">
     <div class="p-4">
         <div class="row">
             <div class="col-6">
                 <h4 class="text-primary">La liste des Produits</h4>
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Produit" asp-action="Create" class="btn-success"><i class="bi bi-plus-circle"></i> &nbsp; New Produit</a>
+                <a asp-controller="Produit" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> &nbsp; New Prod</a>
+
             </div>
         </div>
     </div>
 
-    @if (Model.Count()>0) 
+    @if (Model.Count() > 0)
     {
-      <table class="table table-bordered table-striped w-100" >
-          <thead>
-              <tr class="text-center">
-                  <th>ProduitID</th>
-                  <th>Designation</th>
-                  <th>Prix</th>
-                  <th>Quantite</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
-         <tbody>
-                 @foreach (Produit obj in Model)
-                 {
-                  <tr class="text-center">
-                     <td>@obj.ProduitID</td>
-                     <td>@obj.Designation</td>
-                     <td>@obj.Prix</td>
-                     <td>@obj.Quantite</td>
-                     <td>
-                         <div class="w-100 btn-group" role="group">
-                             <div class="text-center">
-                                 <a asp-controller="Produit" asp-action="Edit" asp-route-ProduitID="@obj.ProduitID" class="btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                 <a asp-controller="Produit" asp-action="Delete" asp-route-ProduitID="@obj.ProduitID" class="btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
-                             </div>
-
-                         </div>
-                     </td>
+        <table class="table table-bordered table-striped w-100">
+            <thead>
+                <tr class="text-center">
+                    <th>ProduitID</th>
+                    <th>Designation</th>
+                    <th>Prix</th>
+                    <th>Quantite</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Produit obj in Model)
+                {
+                    <tr class="text-center">
+                        <td>@obj.ProduitID</td>
+                        <td>@obj.Designation</td>
+                        <td>@obj.Prix</td>
+                        <td>@obj.Quantite</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">     
+                                    <a asp-controller="Produit" asp-action="Edit" asp-route-ProduitID="@obj.ProduitID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                                    <a asp-controller="Produit" asp-action="Delete" asp-route-ProduitID="@obj.ProduitID" class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        </td>
 
 
-                  </tr>
-                 }
-         </tbody>
+                    </tr>
+                }
+            </tbody>
 
-      </table>
+        </table>
     }
     else
     {
-      <h4 class="text-danger">le Produit est introuvable !</h4>
+        <h4 class="text-danger">le Produit est introuvable !</h4>
     }
+
+
+
 </div>
 
