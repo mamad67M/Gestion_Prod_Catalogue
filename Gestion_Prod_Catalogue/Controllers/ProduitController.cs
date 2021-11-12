@@ -1,5 +1,6 @@
 ﻿using Gestion_Prod_Catalogue.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,14 @@ namespace Gestion_Prod_Catalogue.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page =0, int size =5)
         {
-            IEnumerable<Produit> ListeProd = _db.Produits;
+            int position = page * size; // pagination
+            IEnumerable<Produit> ListeProd = _db.Produits.Skip(position).Take(size);
+            // calculer le nombre de pages
+            ViewBag.CurrentPage = page;
+            int totalPages = _db.Produits.Count()/size;
+            ViewBag.totalPages = totalPages;
             return View(ListeProd);
         }
 
@@ -33,6 +39,7 @@ namespace Gestion_Prod_Catalogue.Controllers
             {
                 _db.Produits.Add(p);
                 _db.SaveChanges();
+                TempData["success"] = "Produit ajouter avec succès";
                 return RedirectToAction("Index");
             }
             return View(p);
