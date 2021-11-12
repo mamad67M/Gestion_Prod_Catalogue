@@ -20,5 +20,22 @@ namespace Gestion_Prod_Catalogue.Controllers
             IEnumerable<Produit> ListeProd = _db.Produits;
             return View(ListeProd);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Produit p)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Produits.Add(p);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(p);
+        }
     }
 }
