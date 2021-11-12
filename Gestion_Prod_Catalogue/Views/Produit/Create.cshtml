@@ -3,34 +3,40 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
 <form method="post" asp-action="Create">
     <div class="border p-3 mt-4">
         <div class="row m-2">
-            <h4>Ajout d'un produit'</h4>
+            <h4 class="text-primary">Ajout d'un produit'</h4>
         </div>
         <hr />
         <div class="mb-3">
             <label>Description</label>
             <input asp-for="Designation" class="form-control" />
+            <span asp-validation-for="Designation" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label>Prix</label>
             <input asp-for="Prix" class="form-control" />
+            <span asp-validation-for="Prix" class="text-danger"></span>
+
         </div>
         <div class="mb-3">
             <label>Quantite</label>
             <input asp-for="Quantite" class="form-control" />
+            <span asp-validation-for="Quantite " class="text-danger"></span>
+
         </div>
         @*<div class="mb-3">
             <label>Categorie</label>
             <input asp-for="Categorie" />
         </div>*@
-        <div class="mb-3">
-            <label>CategorieID</label>
-            <input asp-for="CategorieID" class="form-control" />
-        </div>
+    <div class="mb-3">
+        <label>CategorieID</label>
+        <input asp-for="CategorieID" class="form-control" />
+        <span asp-validation-for="CategorieID" class="text-danger"></span>
+
+    </div>
         <button type="submit" class="text-primary mx-2" style="Width:150px">Create</button>
         <a asp-controller="Produit" asp-action="Index"  class="btn-danger mx-2" style="Width:150px">Back</a>
 

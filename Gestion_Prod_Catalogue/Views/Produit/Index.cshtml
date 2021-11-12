@@ -12,7 +12,7 @@
             <div class="col-6">
                 <h4 class="text-primary">La liste des Produits</h4>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-6 text-end">
                 <a asp-controller="Produit" asp-action="Create" class="btn-success"><i class="bi bi-plus-circle"></i> &nbsp; New Produit</a>
             </div>
         </div>
@@ -39,9 +39,11 @@
                      <td>@obj.Prix</td>
                      <td>@obj.Quantite</td>
                      <td>
-                         <div class="w-100 btn-group text-center" role="group">
-                             <a asp-controller="Produit" asp-action="Edit" asp-route-ProduitID="@obj.ProduitID" class="btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                             <a asp-controller="Produit" asp-action="Delete" asp-route-ProduitID="@obj.ProduitID" class="btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
+                         <div class="w-100 btn-group" role="group">
+                             <div class="text-center">
+                                 <a asp-controller="Produit" asp-action="Edit" asp-route-ProduitID="@obj.ProduitID" class="btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                                 <a asp-controller="Produit" asp-action="Delete" asp-route-ProduitID="@obj.ProduitID" class="btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
+                             </div>
 
                          </div>
                      </td>
