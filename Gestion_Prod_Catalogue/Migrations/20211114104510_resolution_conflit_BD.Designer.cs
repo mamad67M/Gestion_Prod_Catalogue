@@ -4,14 +4,16 @@ using Gestion_Prod_Catalogue.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gestion_Prod_Catalogue.Migrations
 {
     [DbContext(typeof(CatalogueDbContext))]
-    partial class CatalogueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211114104510_resolution_conflit_BD")]
+    partial class resolution_conflit_BD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,16 +23,16 @@ namespace Gestion_Prod_Catalogue.Migrations
 
             modelBuilder.Entity("Gestion_Prod_Catalogue.Models.Categorie", b =>
                 {
-                    b.Property<int>("CategorieID")
+                    b.Property<int>("CatalogueID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("NomCategorie")
+                    b.Property<string>("NomCatalogue")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("CategorieID");
+                    b.HasKey("CatalogueID");
 
                     b.ToTable("CATEGORIE");
                 });
@@ -42,11 +44,13 @@ namespace Gestion_Prod_Catalogue.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("CategorieID")
+                    b.Property<int>("CatalogueID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategorieCatalogueID")
                         .HasColumnType("int");
 
                     b.Property<string>("Designation")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -58,7 +62,7 @@ namespace Gestion_Prod_Catalogue.Migrations
 
                     b.HasKey("ProduitID");
 
-                    b.HasIndex("CategorieID");
+                    b.HasIndex("CategorieCatalogueID");
 
                     b.ToTable("PRODUIT");
                 });
@@ -67,7 +71,7 @@ namespace Gestion_Prod_Catalogue.Migrations
                 {
                     b.HasOne("Gestion_Prod_Catalogue.Models.Categorie", "Categorie")
                         .WithMany("ListeProd")
-                        .HasForeignKey("CategorieID");
+                        .HasForeignKey("CategorieCatalogueID");
 
                     b.Navigation("Categorie");
                 });

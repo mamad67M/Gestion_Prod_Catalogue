@@ -10,9 +10,9 @@ namespace Gestion_Prod_Catalogue.Models
    [Table("CATEGORIE")]
     public class Categorie
     {   [Key]
-        public int CatalogueID { get; set; }
+        public int CategorieID { get; set; }
         [StringLength(30)]
-        public string  NomCatalogue { get; set; }
+        public string  NomCategorie { get; set; }
         // propriete de navigation (Lezy Loading)
         public virtual ICollection<Produit> ListeProd { get; set; }
     }

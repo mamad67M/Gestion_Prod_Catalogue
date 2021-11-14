@@ -29,6 +29,7 @@ namespace Gestion_Prod_Catalogue
             services.AddDbContext<CatalogueDbContext>(Option => Option.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnextion")
                 ));
+            services.AddCloudscribePagination();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
