@@ -16,13 +16,27 @@ namespace Gestion_Prod_Catalogue.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(int page = 0, int size = 5)
+        public IActionResult Index(int page = 0, int size = 5, string motcle ="")
         {
             int position = page * size; // pagination
-            IEnumerable<Produit> ListeProd = _db.Produits.Skip(position).Take(size).Include(c => c.Categorie).ToList();
+            IEnumerable<Produit> ListeProd = _db.Produits.Where(p =>p.Designation.Contains(motcle))
+                .Skip(position)
+                .Take(size)
+                .Include(c => c.Categorie).ToList();
             // calculer le nombre de pages
             ViewBag.CurrentPage = page;
-            int totalPages = _db.Produits.Count() / size;
+            int totalPages;
+            int nbreProduit = _db.Produits
+                .Where(p => p.Designation.Contains(motcle))
+                .ToList().Count();
+            if ((nbreProduit % size) == 0)
+            {
+                totalPages = nbreProduit / size;
+            }
+            else
+            {
+                totalPages = 1 +(nbreProduit / size);
+            }
             ViewBag.totalPages = totalPages;
             return View(ListeProd);
         }
@@ -59,6 +73,39 @@ namespace Gestion_Prod_Catalogue.Controllers
             IEnumerable<Categorie> cats = _db.Categories.ToList();
             ViewBag.categorie = cats;
             return View("Create",p);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int ? id)
+        {
+            if (id==0 || id == null)
+            {
+                return NotFound();
+            }
+            var prod = _db.Produits.SingleOrDefault(p =>p.ProduitID == id);
+            if ( prod == null)
+            {
+                return NotFound();
+
+            }
+            IEnumerable<Categorie> cats = _db.Categories.ToList();
+            ViewBag.categorie = cats;
+            return View(prod);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Produit p)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Produits.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            IEnumerable<Categorie> cats = _db.Categories.ToList();
+            ViewBag.categorie = cats;
+            return View(p);
         }
     }
 }
