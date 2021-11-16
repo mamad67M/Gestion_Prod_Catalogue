@@ -37,6 +37,7 @@ namespace Gestion_Prod_Catalogue.Controllers
             {
                 totalPages = 1 +(nbreProduit / size);
             }
+            ViewBag.motcle = motcle;
             ViewBag.totalPages = totalPages;
             return View(ListeProd);
         }

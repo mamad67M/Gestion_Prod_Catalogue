@@ -26,7 +26,7 @@
         <form method="get" asp-action="Index" class="mb-2">
            
                 <label class="m-2" >Mot Clé: </label>
-                <input type="text" name="motcle" />
+                <input type="text" name="motcle" value="@ViewBag.motcle" />
             <button type="submit" class="btn btn-primary" >Chercher</button>
            
         </form>
@@ -100,7 +100,7 @@
                             className = "active";
                         }
                         <li class="@className m-2">
-                            <a asp-action="Index" asp-route-page="@i">@i</a>
+                            <a asp-action="Index" asp-route-page="@i" asp-route-motcle="@ViewBag.motcle">@i</a>
                         </li>
                     }
                 }
